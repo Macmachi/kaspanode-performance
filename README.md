@@ -3,9 +3,6 @@
 
 A real-time system monitor with TUI (Terminal User Interface) for tracking your Kaspa server performance.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-
 ## 🚀 Features
 
 - Real-time CPU monitoring
