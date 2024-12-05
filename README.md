@@ -100,7 +100,7 @@ Parameters are defined in code:
 - `window_size`: Number of points in graphs (default: 100)
 - `max_logs`: Maximum SSH logs in memory (default: 1000)
 - Update interval: 2 seconds
-- Database cleanup: every 12 hours
+- Database cleanup: every week
 
 ## ✍️ Author
 
