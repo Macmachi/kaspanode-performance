@@ -1,6 +1,6 @@
 # Kaspa Node Monitor
 
-A real-time system monitor with TUI (Terminal User Interface) to track your Kaspa node performance.
+A real-time system monitor with TUI (Terminal User Interface) to track your Kaspa node performance on linux server.
 
 ![Demo](/images/demo.png)
 
