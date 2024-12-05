@@ -1,118 +1,126 @@
-# Server Monitor
+# Kaspa Node Monitor
 
-A real-time system monitor with TUI (Terminal User Interface) for tracking your Kaspa node performance.
+A real-time system monitor with TUI (Terminal User Interface) to track your Kaspa node performance.
 
-## 🚀 Features
+## ⭐ Features
 
-- Real-time CPU monitoring for Kaspad
-- Memory usage tracking for Kaspad
-- Disk space monitoring for Kaspad
-- Network monitoring (upload/download rates) for Kaspad
+- Real-time monitoring of kaspad process:
+  - CPU usage per core
+  - Memory consumption
+  - Disk usage
+  - Network traffic (upload/download rates)
 - SSH connection attempts logging
 - SQLite database for metrics history
-- Interactive terminal user interface
+- Interactive terminal user interface with graphs
+- Automatic data updates every 2 seconds
+- Automatic database cleanup
 
 ## 📋 Prerequisites
 
-- Rust  
+- Rust and Cargo
 - SQLite3
-- Linux  
-- Running rusty kaspad node
-
-## ⚡ Important Note
-
-This monitor requires a running kaspad instance to track its performance metrics. Make sure to:
-
-1. Install kaspad first
+- Linux
+- Running kaspad node
 
 ## 🛠️ Installation
 
-1. Install Rust and Cargo
-2. Install system dependencies 
+1. Clone the repository:
+```bash
+git clone [repo-url]
+cd server-monitor
+```
 
-## 🚦 Usage
+2. Build the project:
+```bash
+cargo build --release
+```
+
+## 🚀 Usage
 
 Start the monitor:
 ```bash
 ./target/release/server_monitor
 ```
 
-### Available Commands:
+### Available Commands
 
 - `q` : Quit application
-- `↑` : Scroll up in logs
-- `↓` : Scroll down in logs
+- `↑` : Scroll logs up
+- `↓` : Scroll logs down
 
-## 📦 File Structure
+## 📊 Monitored Metrics
 
-```
-server_monitor/
-├── src/
-│   └── main.rs
-├── Cargo.toml
-├── Cargo.lock
-└── README.md
-```
+- **CPU**: Percentage used by kaspad
+- **Memory**: Usage in GB and percentage
+- **Disk**: 
+  - Space used by .kaspa directory
+  - Kaspad process reads/writes
+- **Network**: 
+  - Download rate
+  - Upload rate
+- **SSH**: Connection attempts (successful/failed)
 
 ## 🗃️ Database
 
-The program uses SQLite to store metrics. The database (`metrics.db`) is automatically created with two tables:
+The program uses SQLite to store metrics in `metrics.db`:
 
-- `metrics` : Stores system metrics
-- `ssh_attempts` : Records SSH connection attempts
+### Tables
+- `metrics`: Timestamped system metrics
+- `ssh_attempts`: SSH attempts history
 
-## 🔧 Configuration
+### Data Structure
+```sql
+CREATE TABLE metrics (
+    timestamp INTEGER PRIMARY KEY,
+    cpu_usage REAL,
+    memory_usage REAL,
+    memory_total INTEGER,
+    memory_used INTEGER,
+    disk_usage REAL,
+    network_received INTEGER,
+    network_transmitted INTEGER,
+    kaspad_memory INTEGER,
+    kaspad_disk_read INTEGER,
+    kaspad_disk_write INTEGER
+);
 
-Configuration is done through code constants:
+CREATE TABLE ssh_attempts (
+    timestamp INTEGER,
+    ip TEXT,
+    status TEXT,
+    PRIMARY KEY (timestamp, ip)
+);
+```
 
-- `window_size` : Number of points in graphs (default: 100)
-- `max_logs` : Maximum number of SSH logs in memory (default: 1000)
+## ⚙️ Configuration
 
-## 🔍 Monitoring Details
-
-The monitor tracks the following kaspad metrics:
-- CPU usage per core
-- Memory consumption
-- Disk usage for the .kaspa directory
-- Network traffic related to kaspad
-- System-wide performance metrics
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to:
-
-1. Fork the project
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Parameters are defined in code:
+- `window_size`: Number of points in graphs (default: 100)
+- `max_logs`: Maximum SSH logs in memory (default: 1000)
+- Update interval: 2 seconds
+- Database cleanup: every 12 hours
 
 ## ✍️ Author
 
 Rymentz
 
-## 🙏 Acknowledgments
+## 💝 Support
 
-If you find this project useful, you can donate Kaspa to:
-`kaspa:qqngpnpwrfhexgu8kzk3lteu5fakh6fylmt53gt7qwtf4vttjyvfyrnr8shwa`
+If you find this tool useful, you can donate Kaspa to:
+```
+kaspa:qqngpnpwrfhexgu8kzk3lteu5fakh6fylmt53gt7qwtf4vttjyvfyrnr8shwa
+```
 
 ## 🐛 Troubleshooting
 
-Common issues and solutions:
-
-1. Monitor shows no kaspad metrics:
-   - Verify kaspad is running: `ps aux | grep kaspad`
+1. No kaspad metrics displayed:
+   - Check if kaspad is running: `ps aux | grep kaspad`
    - Check kaspad logs: `journalctl -u kaspad -f`
 
 2. Database errors:
    - Check permissions: `ls -l metrics.db`
-   - Ensure SQLite is installed: `sqlite3 --version`
+   - Verify SQLite installation: `sqlite3 --version`
 
 3. Network monitoring issues:
-   - Verify user permissions for network interfaces
-   - Run with sudo if needed (not recommended for regular use)
-```
+   - Check user permissions
+   - Run with sudo if needed (not recommended)
