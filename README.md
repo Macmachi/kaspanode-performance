@@ -2,6 +2,8 @@
 
 A real-time system monitor with TUI (Terminal User Interface) to track your Kaspa node performance.
 
+![Demo](/images/demo.png)
+
 ## ⭐ Features
 
 - Real-time monitoring of kaspad process:
