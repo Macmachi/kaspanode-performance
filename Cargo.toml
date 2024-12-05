@@ -1,0 +1,10 @@
+[package]
+name = "server_monitor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rusqlite = "0.29.0"
+sysinfo = "0.29.0"
+tui = "0.19"
+crossterm = "0.25"
