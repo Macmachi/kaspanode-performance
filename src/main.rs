@@ -1,6 +1,6 @@
 /*  
  * Author: Rymentz
- * Version: v1.0.0
+ * Version: v1.0.1
  * License: MIT License
  */
 
@@ -633,10 +633,10 @@
              last_update = SystemTime::now();
  
              cleanup_counter += 1;
-             if cleanup_counter >= 21600 {
-                 monitor.cleanup()?;
-                 cleanup_counter = 0;
-             }
+            if cleanup_counter >= 302400 { 
+                monitor.cleanup()?;
+                cleanup_counter = 0;
+            }
          }
  
          // Render the interface
