@@ -1,70 +1,34 @@
-
 # Server Monitor
 
-A real-time system monitor with TUI (Terminal User Interface) for tracking your Kaspa server performance.
+A real-time system monitor with TUI (Terminal User Interface) for tracking your Kaspa node performance.
 
 ## 🚀 Features
 
-- Real-time CPU monitoring
-- Memory usage tracking
-- Disk space monitoring
-- Network monitoring (upload/download rates)
+- Real-time CPU monitoring for Kaspad
+- Memory usage tracking for Kaspad
+- Disk space monitoring for Kaspad
+- Network monitoring (upload/download rates) for Kaspad
 - SSH connection attempts logging
 - SQLite database for metrics history
 - Interactive terminal user interface
 
 ## 📋 Prerequisites
 
-- Rust (2021 edition)
+- Rust  
 - SQLite3
-- Linux (for journctl features)
-- Running kaspad instance
+- Linux  
+- Running rusty kaspad node
 
 ## ⚡ Important Note
 
 This monitor requires a running kaspad instance to track its performance metrics. Make sure to:
 
-1. Install kaspad first:
-```bash
-git clone https://github.com/kaspanet/kaspad.git
-cd kaspad
-go install .
-```
-
-2. Run kaspad in a separate terminal or as a service:
-```bash
-kaspad --utxoindex --appdir=~/.kaspa
-```
+1. Install kaspad first
 
 ## 🛠️ Installation
 
-1. Install Rust and Cargo:
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-```
-
-2. Install system dependencies:
-```bash
-# Debian/Ubuntu
-sudo apt install sqlite3 libsqlite3-dev pkg-config
-
-# Fedora
-sudo dnf install sqlite-devel pkgconfig
-
-# Arch Linux
-sudo pacman -S sqlite pkg-config
-```
-
-3. Clone the repository:
-```bash
-git clone https://github.com/your-username/server-monitor.git
-cd server-monitor
-```
-
-4. Build and install:
-```bash
-cargo build --release
-```
+1. Install Rust and Cargo
+2. Install system dependencies 
 
 ## 🚦 Usage
 
@@ -113,58 +77,6 @@ The monitor tracks the following kaspad metrics:
 - Network traffic related to kaspad
 - System-wide performance metrics
 
-## 🚀 Running as a Service
-
-To run both kaspad and the monitor as services:
-
-1. Create kaspad service file:
-```bash
-sudo nano /etc/systemd/system/kaspad.service
-```
-
-```ini
-[Unit]
-Description=Kaspad Node
-After=network.target
-
-[Service]
-User=your_username
-ExecStart=/usr/local/bin/kaspad --utxoindex --appdir=/home/your_username/.kaspa
-Restart=always
-RestartSec=3
-
-[Install]
-WantedBy=multi-user.target
-```
-
-2. Create monitor service file:
-```bash
-sudo nano /etc/systemd/system/server-monitor.service
-```
-
-```ini
-[Unit]
-Description=Server Monitor
-After=kaspad.service
-
-[Service]
-User=your_username
-ExecStart=/path/to/server_monitor
-Restart=always
-RestartSec=3
-
-[Install]
-WantedBy=multi-user.target
-```
-
-3. Enable and start services:
-```bash
-sudo systemctl enable kaspad
-sudo systemctl enable server-monitor
-sudo systemctl start kaspad
-sudo systemctl start server-monitor
-```
-
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
@@ -204,5 +116,3 @@ Common issues and solutions:
    - Verify user permissions for network interfaces
    - Run with sudo if needed (not recommended for regular use)
 ```
-
-Would you like me to explain any specific section in more detail or add additional information?
