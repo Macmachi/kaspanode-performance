@@ -207,3 +207,5 @@ Common issues and solutions:
    - Verify user permissions for network interfaces
    - Run with sudo if needed (not recommended for regular use)
 ```
+
+Would you like me to explain any specific section in more detail or add additional information?
