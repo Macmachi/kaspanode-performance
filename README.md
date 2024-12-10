@@ -20,7 +20,7 @@ A real-time system monitor with TUI (Terminal User Interface) to track your Kasp
 ## 📋 Prerequisites
 
 - Rust and Cargo
-- SQLite3
+- SQLite3 (sudo apt-get install libsqlite3-dev)
 - Linux
 - Running kaspad node
 
