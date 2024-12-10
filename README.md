@@ -29,7 +29,7 @@ A real-time system monitor with TUI (Terminal User Interface) to track your Kasp
 1. Clone the repository:
 ```bash
 git clone [repo-url]
-cd server-monitor
+cd server_monitor
 ```
 
 2. Build the project:
